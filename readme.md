@@ -9,7 +9,6 @@ A modern full-stack e-commerce platform built with **Symfony 7.4**, **EasyAdmin 
 * Product management
 * Category management
 * Brand management
-* Inventory & stock tracking
 * Customer management
 * Order management
 * Dashboard statistics
@@ -27,7 +26,6 @@ A modern full-stack e-commerce platform built with **Symfony 7.4**, **EasyAdmin 
 * User profile management
 * Order history
 * Checkout process
-* Wishlist support (optional)
 
 ### Security
 
@@ -62,7 +60,7 @@ A modern full-stack e-commerce platform built with **Symfony 7.4**, **EasyAdmin 
 
 * PHP >= 8.2
 * Composer
-* Node.js >= 20
+* Node.js >= 22.20
 * NPM or Yarn
 * MySQL 8+ or PostgreSQL
 
@@ -128,7 +126,7 @@ symfony server:start
 Frontend:
 
 ```bash
-npm run dev
+npm run dev-server
 ```
 
 ---
@@ -162,7 +160,9 @@ Authorization: Bearer {token}
 ```text
 ├── src/
 │   ├── Controller/
+│   ├── DataFixtures/
 │   ├── Entity/
+│   ├── Form/
 │   ├── Repository/
 │   ├── Service/
 │   └── Security/
@@ -172,62 +172,32 @@ Authorization: Bearer {token}
 ├── public/
 ├── templates/
 │
-├── frontend/
-│   ├── src/
+├── assets/
 │   ├── components/
-│   ├── views/
 │   ├── router/
-│   └── stores/
+│   └── services/
+│   └── styles/
+│   └── app.js
 │
-└── tests/
+└── webpack.config.js
 ```
 
 ---
 
 ## Main Entities
 
-* Product
-* Category
 * Brand
-* Customer
+* Category
+* Product
+* Client
 * Order
 * Order Item
 * Cart
+* Cart Item
 * User
-* Role
+* Spatie roles-permissions
 
----
 
-## Development Commands
-
-```bash
-# Clear cache
-php bin/console cache:clear
-
-# Run migrations
-php bin/console doctrine:migrations:migrate
-
-# Run tests
-php bin/phpunit
-
-# Build frontend
-npm run build
-```
-
----
-
-## Future Improvements
-
-* Multi-language support
-* Multi-currency support
-* Discount & coupon system
-* Product reviews
-* Wishlist
-* Payment gateway integration
-* Email notifications
-* Advanced analytics
-
----
 
 ## License
 
