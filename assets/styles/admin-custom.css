@@ -1,0 +1,187 @@
+/* ============================================
+   EasyAdmin 5 — Modern Dark Sidebar
+   Symfony 7.4 / admin-custom.css
+   ============================================ */
+
+/* Sidebar background */
+.sidebar {
+    background: #0f1117 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Brand / logo area */
+.sidebar .admin-panel-logo {
+    padding: 20px 18px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 8px;
+}
+
+/* Section labels (e.g. "Main", "Catalogue") */
+.sidebar .menu-section-title,
+.sidebar .ea-sidebar-menu .menu-section {
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    color: #4b5563 !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    padding: 14px 18px 5px !important;
+}
+
+/* Menu item base */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    margin: 1px 10px;
+    border-radius: 8px;
+    color: #9ca3af;
+    font-size: 13.5px;
+    font-weight: 450;
+    transition: background 0.15s ease, color 0.15s ease;
+    text-decoration: none;
+    position: relative;
+}
+
+/* Hover state */
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.055) !important;
+    color: #e5e7eb !important;
+}
+
+/* Active / current page */
+.menu-item.active,
+.menu-item[aria-current="page"] {
+    background: rgba(99, 102, 241, 0.18) !important;
+    color: #a5b4fc !important;
+}
+
+/* Active left border accent */
+.menu-item.active::before,
+.menu-item[aria-current="page"]::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 6px;
+    bottom: 6px;
+    width: 3px;
+    background: #6366f1;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Icon inside menu item */
+.menu-item .menu-item-icon,
+.menu-item i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+    color: inherit;
+    opacity: 0.75;
+}
+
+.menu-item.active i,
+.menu-item[aria-current="page"] i {
+    color: #818cf8 !important;
+    opacity: 1;
+}
+
+/* Menu item label */
+.menu-item .menu-item-name {
+    color: inherit;
+    font-size: 13.5px;
+}
+
+/* Divider between sections */
+.sidebar hr,
+.sidebar .menu-separator {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 8px 10px;
+}
+
+/* Sidebar footer / user area */
+.sidebar .sidebar-footer,
+.sidebar .user-menu {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px 10px;
+    margin-top: auto;
+}
+
+.sidebar .user-menu .username {
+    font-size: 13px;
+    font-weight: 500;
+    color: #d1d5db;
+}
+
+/* Scrollbar in sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+}
+
+/* Content area header */
+.content-header,
+.content-header-title {
+    font-weight: 600;
+    letter-spacing: -0.2px;
+}
+
+/* Breadcrumbs */
+.content-top .breadcrumb {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* Action buttons — primary */
+.btn-primary {
+    background: #6366f1 !important;
+    border-color: #6366f1 !important;
+    border-radius: 8px !important;
+    font-weight: 500;
+    padding: 7px 16px;
+    transition: background 0.15s;
+}
+.btn-primary:hover {
+    background: #4f46e5 !important;
+    border-color: #4f46e5 !important;
+}
+
+/* Tables */
+.table thead th {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #9ca3af;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 10px 12px;
+}
+
+.table tbody tr {
+    transition: background 0.1s;
+}
+.table tbody tr:hover {
+    background: #f8f9ff;
+}
+
+/* Form fields */
+.form-control,
+.form-select {
+    border-radius: 8px !important;
+    border-color: #d1d5db !important;
+    font-size: 14px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+.form-control:focus,
+.form-select:focus {
+    border-color: #6366f1 !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+}
+
+#main-menu .menu .menu-item-contents {
+  color: #d1d5da;
+}
