@@ -3,10 +3,12 @@ import Welcome from '../components/Welcome.vue'
 import AboutUs from '../components/AboutUs.vue'
 import Panel from '../components/client/Panel.vue'
 import NotFound from '../components/NotFound.vue'
+import Products from '../components/Products.vue'
 
 const routes = [
   { path: '/', name: 'welcome', component: Welcome },
   { path: '/about', name: 'about', component: AboutUs },
+  { path: '/products', name: 'products', component: Products },
   { path: '/user', name: 'user', component: Panel, meta: { requiresAuth: true } },
   { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound, },
 ]

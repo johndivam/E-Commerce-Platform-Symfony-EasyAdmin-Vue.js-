@@ -31,6 +31,16 @@
                             About Us
                         </RouterLink>
                     </li>
+                     <li>
+                        <RouterLink
+                            to="/products"
+                            class="transition-colors hover:text-gray-900"
+                            active-class="border-b-2 border-gray-900 pb-0.5 text-gray-900"
+                        >
+                            Products
+                        </RouterLink>
+                    </li>
+
                     <li v-if="user" class="relative">
                         <button @click="dropdownOpen = !dropdownOpen" class="flex items-center gap-1 text-gray-900 hover:text-gray-700">
                             {{ user.name }}

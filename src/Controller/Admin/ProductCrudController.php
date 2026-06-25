@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
+use App\Enum\ProductStatus;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -90,16 +91,10 @@ class ProductCrudController extends AbstractCrudController
             // Status – use a choice field with predefined options
             ChoiceField::new('status')
                 ->setLabel('Status')
-                ->setChoices([
-                    'Available' => 'available',
-                    'Out of Stock' => 'out_of_stock',
-                    'Discontinued' => 'discontinued',
-                ])
-                ->renderAsBadges([
-                    'available' => 'success',
-                    'out_of_stock' => 'warning',
-                    'discontinued' => 'danger',
-                ]),
+                ->setChoices(ProductStatus::choices())
+                ->renderAsBadges(ProductStatus::badgeStyles()),
+
+
 
         ];
     }

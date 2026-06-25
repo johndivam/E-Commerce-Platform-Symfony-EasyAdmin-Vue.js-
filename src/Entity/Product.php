@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\Brand;
+use App\Entity\Category;
 use App\Entity\Traits\TimestampableTrait;
+use App\Enum\ProductStatus;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -16,46 +20,59 @@ class Product
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['product:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['product:read'])]
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['product:read'])]
     private ?Category $category = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['product:read'])]
     private ?Brand $brand = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['product:read'])]
     private ?string $slug = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['product:read'])]
     private ?string $image = null;
 
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['product:read'])]
     private ?string $sku = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['product:read'])]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['product:read'])]
     private ?string $shortDescription = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    #[Groups(['product:read'])]
     private ?string $price = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2, nullable: true)]
+    #[Groups(['product:read'])]
     private ?string $oldPrice = null;
 
     #[ORM\Column]
+    #[Groups(['product:read'])]
     private ?int $stock = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    #[ORM\Column(type: 'string', length: 255, enumType: ProductStatus::class)]
+    #[Groups(['product:read'])]
+    private ?ProductStatus $status = null;
 
     public function getId(): ?int
     {
@@ -188,15 +205,14 @@ class Product
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?ProductStatus
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(ProductStatus $status): static
     {
         $this->status = $status;
-
         return $this;
     }
 
@@ -210,5 +226,11 @@ class Product
         $this->image = $image;
 
         return $this;
+    }
+
+    #[Groups(['product:read'])]
+    public function getImageUrl(): ?string
+    {
+        return $this->image ? '/uploads/products/' . $this->image : null;
     }
 }
