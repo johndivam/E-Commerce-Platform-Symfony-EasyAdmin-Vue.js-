@@ -21,19 +21,28 @@ class ProductController extends AbstractController
     #[Route('/', methods: ['GET'])]
     public function index(Request $request): JsonResponse
     {
-        $products = $this->productRepository->getWithPagination($request->query->getInt('page', 1), 12);
+        $page = max(1, $request->query->getInt('page', 1));
+        $limit = 12;
 
-        $json = $this->serializer->serialize($products, 'json', [
+        $paginator = $this->productRepository->getWithPagination($page, $limit,  $request->query->get('q'));
+        $total = count($paginator);
+
+        $json = $this->serializer->serialize([
+            'items' => iterator_to_array($paginator->getIterator()),
+            'total' => $total,
+            'page' => $page,
+            'totalPages' =>  (int) ceil($total / $limit),
+        ], 'json', [
             'groups' => ['product:read'],
         ]);
 
         return new JsonResponse($json, 200, [], true);
     }
 
-    #[Route('/{id}', methods: ['GET'])]
-    public function show(int $id): JsonResponse
+    #[Route('/{slug}', methods: ['GET'])]
+    public function show(string $slug): JsonResponse
     {
-        $product = $this->productRepository->find($id);
+        $product = $this->productRepository->findOneBySlugWithRelations($slug);
 
         if (!$product) {
             return new JsonResponse(['message' => 'Product not found.'], 404);

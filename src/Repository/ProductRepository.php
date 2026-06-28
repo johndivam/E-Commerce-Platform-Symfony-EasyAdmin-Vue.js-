@@ -18,17 +18,37 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    public function getWithPagination(int $page, int $limit): Paginator
+    public function getWithPagination(int $page, int $limit, ?string $search = null): Paginator
     {
-        return new Paginator(
-            $this->createQueryBuilder('r')
+        $qb = $this->createQueryBuilder('r')
             ->andWhere('r.status = :status')
             ->setParameter('status', ProductStatus::AVAILABLE)
-            ->setFirstResult(($page -1) * $limit)
-            ->setMaxResults($limit)
-            ->getQuery()
-            ->setHint(Paginator::HINT_ENABLE_DISTINCT, false),
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
+
+        if (!empty(trim($search))) {
+            $qb->andWhere('r.name LIKE :search')
+                ->setParameter('search', '%' . $search . '%');
+        }
+
+        return new Paginator(
+            $qb->getQuery()->setHint(Paginator::HINT_ENABLE_DISTINCT, false),
             false
         );
+    }
+
+    public function findOneBySlugWithRelations(string $slug): ?Product
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->addSelect('c')
+            ->leftJoin('p.brand', 'b')
+            ->addSelect('b')
+            ->andWhere('p.slug = :slug')
+            ->andWhere('p.status = :status')
+            ->setParameter('slug', $slug)
+            ->setParameter('status', ProductStatus::AVAILABLE)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

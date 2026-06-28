@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Client;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -22,6 +23,16 @@ class AdminUserFixture extends Fixture
         $hashedPassword = $this->passwordHasher->hashPassword($admin,'123456@');
         $admin->setPassword($hashedPassword);
         $manager->persist($admin);
+        $manager->flush();
+
+        $client = new Client();
+        $client->setName('Karim');
+        $client->setEmail('karim@example.com');
+        $client->setRoles(['ROLE_CLIENT']);
+        $client->setIsBanned(false);
+        $hashedPassword = $this->passwordHasher->hashPassword($client,'123456@');
+        $client->setPassword($hashedPassword);
+        $manager->persist($client);
         $manager->flush();
     }
 }

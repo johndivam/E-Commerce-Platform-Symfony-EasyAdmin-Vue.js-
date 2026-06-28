@@ -31,13 +31,22 @@
                             About Us
                         </RouterLink>
                     </li>
-                     <li>
+                    <li>
                         <RouterLink
                             to="/products"
                             class="transition-colors hover:text-gray-900"
                             active-class="border-b-2 border-gray-900 pb-0.5 text-gray-900"
                         >
                             Products
+                        </RouterLink>
+                    </li>
+                    <li v-if="!user">
+                        <RouterLink
+                            to="/login"
+                            class="transition-colors hover:text-gray-900"
+                            active-class="border-b-2 border-gray-900 pb-0.5 text-gray-900"
+                        >
+                            Login
                         </RouterLink>
                     </li>
 
