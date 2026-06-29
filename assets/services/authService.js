@@ -27,4 +27,8 @@ export default {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
     },
+
+    register(name, email, password) {
+        return api.post('/register', { name, email, password });
+    }
 };

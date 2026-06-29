@@ -45,15 +45,9 @@ class CategoryCrudController extends AbstractCrudController
         yield ImageField::new('image')
             ->setBasePath('uploads/categories')
             ->setUploadDir('public/uploads/categories')
-            ->setUploadedFileNamePattern('[slug]-[randomhash].[extension]')
+            ->setUploadedFileNamePattern('[uuid].[extension]')
             ->setRequired(false)
-            ->setFormTypeOption('constraints', [
-                new Image([
-                    'maxSize' => '300k', //500 KB
-                    'maxWidth' => 600,
-                    'maxHeight' => 600,
-                ])
-            ]);
+            ->setSortable(false);
 
         yield AssociationField::new('parent')
             ->setRequired(false)

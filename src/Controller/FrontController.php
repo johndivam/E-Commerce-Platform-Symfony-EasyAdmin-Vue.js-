@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class FrontController extends AbstractController
 {
-    #[Route('/{any}', name: 'welcome', requirements: ['any' => '^(?!api|admin).+'], defaults: ['any' => null])]
+    #[Route('/{any}', name: 'welcome', requirements: ['any' => '^(?!api|admin|login).+'], defaults: ['any' => null]  )]
     public function index(): Response
     {
         return $this->render('welcome.html.twig');

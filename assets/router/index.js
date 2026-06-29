@@ -11,7 +11,8 @@ const routes = [
   { path: '/products', name: 'products', component: Products },
   { path: '/products/:slug', name: 'product-show', component: import('../components/ProductShow.vue') },
 
-  { path: '/login', name: 'login', component: import('../components/Login.vue') },
+  { path: '/user-login', name: 'login', component: import('../components/Login.vue') },
+  { path: '/user-register', name: 'register', component: import('../components/Register.vue') },
   { path: '/user', name: 'user', component: Panel, meta: { requiresAuth: true } },
   
   { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound, },

@@ -42,7 +42,7 @@
                     </li>
                     <li v-if="!user">
                         <RouterLink
-                            to="/login"
+                            to="/user-login"
                             class="transition-colors hover:text-gray-900"
                             active-class="border-b-2 border-gray-900 pb-0.5 text-gray-900"
                         >

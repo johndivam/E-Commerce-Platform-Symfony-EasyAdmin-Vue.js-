@@ -210,9 +210,11 @@ class Product
         return $this->status;
     }
 
-    public function setStatus(ProductStatus $status): static
+    public function setStatus(ProductStatus|string $status): static
     {
-        $this->status = $status;
+        $this->status = $status instanceof ProductStatus 
+            ? $status 
+            : ProductStatus::from($status);
         return $this;
     }
 
