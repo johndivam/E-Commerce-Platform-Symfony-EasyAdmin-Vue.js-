@@ -15,6 +15,9 @@ const routes = [
   { path: '/user-register', name: 'register', component: import('../components/Register.vue') },
   { path: '/user', name: 'user', component: Panel, meta: { requiresAuth: true } },
   
+  { path: '/cart', name: 'cart', component: import('../components/Cart.vue'), meta: { requiresAuth: true } },
+
+  
   { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound, },
 ]
 
@@ -29,6 +32,7 @@ router.beforeEach((to, from, next) => {
 
   if (requiresAuth && !token) {
     next({ name: 'welcome' });
+    
   } else {
     next();
   }

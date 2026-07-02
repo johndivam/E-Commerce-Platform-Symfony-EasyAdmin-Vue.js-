@@ -131,6 +131,19 @@ npm run dev-server
 
 ---
 
+
+## Screenshots
+
+### Products page 
+![Products page](.readme/screenshots/products-page.png)
+
+### Product view
+![Product view](.readme/screenshots/product-view.jpg)
+
+### Manage Products (EasyAdmin)
+![Manage Products](.readme/screenshots/admin-products.jpg)
+
+
 ## API Authentication
 
 Authenticate using JWT:

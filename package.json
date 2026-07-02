@@ -1,19 +1,23 @@
 {
     "devDependencies": {
-        "@babel/core": "^7.17.0",
-        "@babel/preset-env": "^7.16.0",
-        "@symfony/webpack-encore": "^6.0.0",
-        "@tailwindcss/postcss": "^4.3.1",
-        "autoprefixer": "^10.5.0",
-        "core-js": "^3.38.0",
-        "css-loader": "^7.1.4",
-        "postcss": "^8.5.15",
+        "@babel/core": "^8.0.0",
+        "@babel/preset-env": "^8.0.0",
+        "@symfony/webpack-encore": "^7.0.0",
+        "@tailwindcss/cli": "^4.3.2",
+        "@vue/compiler-sfc": "^3.5.39",
+        "autoprefixer": "^10.5.2",
+        "babel-plugin-polyfill-corejs3": "^1.0.0",
+        "core-js": "^3.49.0",
+        "postcss": "^8.5.16",
         "postcss-loader": "^8.2.1",
         "regenerator-runtime": "^0.13.9",
-        "style-loader": "^4.0.0",
-        "tailwindcss": "^4.3.1",
-        "webpack": "^5.72",
-        "webpack-cli": "^6.0.0",
+        "tailwindcss": "^4.3.2",
+        "vue-loader": "^17.4.2",
+
+        "@tailwindcss/postcss": "^4.3.2",
+        
+        "webpack": "^5.82",
+        "webpack-cli": "^7.0.0",
         "webpack-dev-server": "^5.2.5"
     },
     "license": "UNLICENSED",
@@ -28,7 +32,6 @@
         "@vue/vue3-jest": "^29.2.6",
         "axios": "^1.18.1",
         "vue": "^3.5.38",
-        "vue-loader": "^17.4.2",
         "vue-router": "^5.1.0"
     }
 }

@@ -51,6 +51,7 @@
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import authService from '../services/authService';
+import { useCart } from '../composables/useCart.js';
 
 const isLoggedIn = computed(() => authService.isLoggedIn());
 
@@ -66,6 +67,9 @@ const handleLogin = async () => {
   try {
     const response = await authService.login(email.value, password.value);
     authService.setSession(response.data.token, response.data.user);
+
+    await useCart().mergeGuestCartIntoAccount();
+
     window.location.href = '/user'; 
   } catch (err) {
     if (err.response?.status === 401) {
