@@ -29,6 +29,7 @@ router.beforeEach((to, from, next) => {
 
   if (requiresAuth && !token) {
     next({ name: 'welcome' });
+    
   } else {
     next();
   }

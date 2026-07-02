@@ -44,6 +44,9 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $isBanned = null;
 
+    #[ORM\OneToOne(mappedBy: 'client', targetEntity: Cart::class, cascade: ['persist', 'remove'])]
+    private ?Cart $cart = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -159,6 +162,11 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isBanned = $isBanned;
 
         return $this;
+    }
+
+    public function getCart(): ?Cart
+    {
+        return $this->cart;
     }
 
     

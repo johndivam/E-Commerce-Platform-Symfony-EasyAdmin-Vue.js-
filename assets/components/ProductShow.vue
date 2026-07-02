@@ -67,10 +67,11 @@
         </p>
 
         <button
-          :disabled="product.stock <= 0"
+          :disabled="product.stock <= 0 || isAdding"
+          @click="handleAddToCart"
           class="mt-6 w-full md:w-auto px-8 bg-indigo-600 text-white text-sm font-medium py-3 rounded-lg hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
         >
-          Add to cart
+          {{ isAdding ? 'Adding…' : 'Add to cart' }}
         </button>
 
         <div v-if="product.description" class="mt-8 pt-6 border-t border-gray-200">
@@ -90,12 +91,16 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from '../axios.js';
+import { useCart } from '../composables/useCart.js';
 
 const route = useRoute();
 
 const product = ref(null);
 const isLoading = ref(true);
 const error = ref(null);
+
+const { addToCart } = useCart();
+const isAdding = ref(false);
 
 async function fetchProduct(slug) {
   isLoading.value = true;
@@ -111,6 +116,15 @@ async function fetchProduct(slug) {
     }
   } finally {
     isLoading.value = false;
+  }
+}
+
+async function handleAddToCart() {
+  isAdding.value = true;
+  try {
+    await addToCart(product.value, 1);
+  } finally {
+    isAdding.value = false;
   }
 }
 

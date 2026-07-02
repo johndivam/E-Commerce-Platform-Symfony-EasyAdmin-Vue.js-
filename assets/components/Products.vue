@@ -77,10 +77,11 @@
               </span>
             </div>
             <button
-              :disabled="product.stock <= 0"
+              :disabled="product.stock <= 0 || addingId === product.id"
+              @click.stop.prevent="handleAddToCart(product)"
               class="mt-3 w-full bg-indigo-600 text-white text-sm font-medium py-2 rounded-lg hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
             >
-              Add to cart
+              {{ addingId === product.id ? 'Adding…' : 'Add to cart' }}
             </button>
           </div>
         </div>
@@ -123,6 +124,7 @@
 import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import axios from '../axios.js';
+import { useCart } from '../composables/useCart.js';
 
 const route = useRoute();
 const router = useRouter();
@@ -136,6 +138,9 @@ const total = ref(0);
 const totalPages = ref(0);
 
 const searchInput = ref(route.query.q || '');
+
+const { addToCart } = useCart();
+const addingId = ref(null);
 
 async function fetchProducts() {
   isLoading.value = true;
@@ -187,6 +192,17 @@ const pageNumbers = computed(() => {
   for (let i = start; i <= end; i++) pages.push(i);
   return pages;
 });
+
+//handleAddToCart
+async function handleAddToCart(product) {
+  addingId.value = product.id;
+  try {
+    console.log('addToCart');
+    await addToCart(product, 1);
+  } finally {
+    addingId.value = null;
+  }
+}
 
 // Single source of truth: any change to page or q in the URL triggers a refetch
 watch(
