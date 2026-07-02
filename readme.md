@@ -2,6 +2,18 @@
 
 A modern full-stack e-commerce platform built with **Symfony 7.4**, **EasyAdmin 5**, and **Vue.js**. The project provides a powerful administration panel for managing products, orders, customers, and inventory, alongside a fast and responsive customer-facing storefront powered by Vue.js.
 
+## Screenshots
+
+### Products page 
+![Products page](screenshots/products-page.jpg)
+
+### Product view
+![Product view](screenshots/product-view.jpg)
+
+### Manage Products (EasyAdmin)
+![Manage Products](screenshots/admin-products.jpg)
+
+
 ## Features
 
 ### Administration Panel
@@ -130,19 +142,6 @@ npm run dev-server
 ```
 
 ---
-
-
-## Screenshots
-
-### Products page 
-![Products page](screenshots/products-page.jpg)
-
-### Product view
-![Product view](screenshots/product-view.jpg)
-
-### Manage Products (EasyAdmin)
-![Manage Products](screenshots/admin-products.jpg)
-
 
 ## API Authentication
 
