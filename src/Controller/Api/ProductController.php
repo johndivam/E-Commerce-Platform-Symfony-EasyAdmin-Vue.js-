@@ -22,7 +22,7 @@ class ProductController extends AbstractController
     public function index(Request $request): JsonResponse
     {
         $page = max(1, $request->query->getInt('page', 1));
-        $limit = 12;
+        $limit = 4;
 
         $paginator = $this->productRepository->getWithPagination($page, $limit,  $request->query->get('q'));
         $total = count($paginator);

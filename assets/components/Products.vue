@@ -197,7 +197,6 @@ const pageNumbers = computed(() => {
 async function handleAddToCart(product) {
   addingId.value = product.id;
   try {
-    console.log('addToCart');
     await addToCart(product, 1);
   } finally {
     addingId.value = null;

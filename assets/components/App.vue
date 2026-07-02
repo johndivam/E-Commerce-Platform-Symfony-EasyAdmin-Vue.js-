@@ -67,6 +67,22 @@
                             </button>
                         </div>
                     </li>
+
+                    <li>
+                        <RouterLink
+                            to="/cart"
+                            class="relative flex items-center transition-colors hover:text-gray-900"
+                            active-class="text-gray-900"
+                        >
+                            Cart
+                            <span
+                                v-if="totalItems > 0"
+                                class="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-indigo-600 text-[10px] font-semibold text-white"
+                            >
+                                {{ totalItems }}
+                            </span>
+                        </RouterLink>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -89,16 +105,21 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import authService from '../services/authService';
+import { useCart } from '../composables/useCart.js';
 
 const user = ref(null);
 const dropdownOpen = ref(false);
 const router = useRouter();
+const { totalItems, loadCart } = useCart();
 
 onMounted(() => {
     const stored = localStorage.getItem('user');
     if (stored) {
         user.value = JSON.parse(stored);
     }
+
+
+    loadCart();
 });
 
 const closeDropdown = () => {

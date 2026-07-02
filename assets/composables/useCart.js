@@ -42,8 +42,6 @@ async function loadCart() {
 function upsertGuestItem(product, quantity) {
   const items = readGuestCart();
   const existing = items.find((i) => i.productId === product.id);
-  console.log("existing");
-  console.log(existing);
   if (existing) {
     existing.quantity += quantity;
     existing.lineTotal = existing.quantity * existing.price;
@@ -64,12 +62,10 @@ function upsertGuestItem(product, quantity) {
 }
 
 async function addToCart(product, quantity = 1) {
-  console.log('fffff');
   if (authService.isLoggedIn()) {
     const { data } = await cartService.addItem(product.id, quantity);
     applyServerCart(data);
   } else {
-    console.log('upsertGuestItem');
     upsertGuestItem(product, quantity);
   }
 }
